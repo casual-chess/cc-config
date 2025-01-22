@@ -24,5 +24,6 @@ CREATE TABLE moves (
     move_number INT NOT NULL,
     move_notation VARCHAR(10) NOT NULL,
     player player_enum NOT NULL,
+    move_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (game_id, move_number)
 )
