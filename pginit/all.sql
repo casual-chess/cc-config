@@ -1,12 +1,16 @@
 CREATE TABLE users (
     user_id BIGSERIAL PRIMARY KEY,
-    username VARCHAR(32) NOT NULL
+    username VARCHAR(32) NOT NULL UNIQUE
 );
+
+CREATE INDEX idx_users_username ON users (username);
 
 CREATE TABLE sessions (
     session_id UUID PRIMARY KEY,
     user_id BIGSERIAL NOT NULL REFERENCES users(user_id)
 );
+
+CREATE INDEX idx_sessions_user_id ON sessions (user_id);
 
 CREATE TYPE game_status_enum AS ENUM ('ongoing', 'draw', 'white', 'black');
 
