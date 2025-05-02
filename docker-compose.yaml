@@ -1,0 +1,20 @@
+services:
+  pg:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=casual
+      - POSTGRES_PASSWORD=chess
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./pginit:/docker-entrypoint-initdb.d
+
+  redis:
+    image: redis:latest
+    container_name: redis-server
+    volumes:
+      - redis_data:/data # for persistence
+
+volumes:
+  pg_data:
+  redis_data:
